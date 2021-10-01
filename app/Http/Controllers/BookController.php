@@ -3,24 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
-class AuthController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function me()
+    public function index()
     {
-        return
-        [
-            "NISN" => 3103119186,
-            "Nama" => "Talitha Entik Shafiqah",
-            "Gender" => "Perempuan",
-            "Phone" => 6282247406001,
-            "Kelas" => "XII RPL 6"
-        ];
+        return Book::get();
     }
 
     /**
@@ -41,7 +35,14 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Book::create([ //
+            'title' => $request->title,
+            'description' => $request->description,
+            'author' => $request->author,
+            'publisher' => $request->publisher,
+            'date_of_issue' => $request->date_of_issue
+
+        ]);
     }
 
     /**
@@ -52,7 +53,7 @@ class AuthController extends Controller
      */
     public function show($id)
     {
-        //
+        return Book::find($id);
     }
 
     /**
@@ -75,7 +76,14 @@ class AuthController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Book::find($id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'author' => $request->author,
+            'publisher' => $request->publisher,
+            'date_of_issue' => $request->date_of_issue
+
+        ]);
     }
 
     /**
@@ -86,6 +94,6 @@ class AuthController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Book::find($id)->delete();
     }
 }
