@@ -30,5 +30,5 @@ Route::resource('author', "\App\Http\Controllers\AuthorController")->except('edi
 
 Route::post('/me', [AuthController::class, 'me']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::cass, 'register']);
 Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
